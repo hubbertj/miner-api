@@ -1,0 +1,27 @@
+{
+  "name": "miner-api",
+  "version": "1.0.0",
+  "description": "This is a api for miner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hubbertj/miner-api.git"
+  },
+  "keywords": [
+    "node",
+    "mining",
+    "eth"
+  ],
+  "author": "Jerum Lee Hubbert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hubbertj/miner-api/issues"
+  },
+  "homepage": "https://github.com/hubbertj/miner-api#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
