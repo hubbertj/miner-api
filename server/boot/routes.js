@@ -4,16 +4,15 @@ const systeminformation = require('systeminformation');
 
 
 module.exports = function(app) {
-
+  
   /**
    * Used for getting the server health;
    * @param  {[type]} app [description]
    * @return {[type]}     [description]
    */
-  app.get('/health', function(req, res) {
+  app.get('/api/health', function(req, res) {
 
     var serverData = [];
-
     systeminformation.cpuTemperature()
       .then(function(data) {
         serverData.push(data);
@@ -31,7 +30,7 @@ module.exports = function(app) {
    * @param  {Array}  res) {               var serverData [description]
    * @return {[type]}      [description]
    */
-  app.get('/reboot', function(req, res) {
+  app.get('/api/reboot', function(req, res) {
 
     var serverData = [];
 
@@ -45,4 +44,5 @@ module.exports = function(app) {
       })
 
   });
+
 }
