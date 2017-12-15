@@ -20,5 +20,6 @@
     "cors": false
   },
   "legacyExplorer": false,
-  "logoutSessionsOnSensitiveChanges": true
+  "logoutSessionsOnSensitiveChanges": true,
+  "secret": "i_hate_cats"
 }
