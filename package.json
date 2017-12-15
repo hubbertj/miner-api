@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
+    "build-docker-image": "cd client && ng build && cd .. && docker build -t miner-api/node-web-app .",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
