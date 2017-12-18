@@ -4,7 +4,25 @@ const systeminformation = require('systeminformation');
 
 
 module.exports = function(app) {
-  
+
+  /**
+   * Used for getting the server health;
+   * @param  {[type]} app [description]
+   * @return {[type]}     [description]
+   */
+  app.get('/*', function(req, res) {
+    var pathArr = req.params[0].split('/');
+    // req.next();
+    req.next();
+    // res.end();
+    // if(pathArr.length > 0 && pathArr[0] === 'api'){
+    //   req.next();
+    //   return;
+    // }
+    //this should be a frontend get call.
+    // res.send({});    
+  });
+
   /**
    * Used for getting the server health;
    * @param  {[type]} app [description]

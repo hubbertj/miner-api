@@ -1,5 +1,7 @@
 # miner-api
-This is a node application which can run on a miner and display sensor data / uptime.
+This is a angular 4 / node application which can run on a (linux / window) miner and display sensor form workers (data / uptime). 
+Each worker has a miner-api instance running which can be accessed via 127.0.0.1:8080, if you edit the configuration and have miner api running on each miner,
+The webapp should display system information about your worker.
 
 #installation
 1. Install docker CE https://docs.docker.com/engine/installation/ 

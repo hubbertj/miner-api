@@ -7,7 +7,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "node .",
+    "start": "cd client && ng build && cd .. && node .",
     "build-docker-image": "cd client && ng build && cd .. && docker build -t miner-api/node-web-app .",
     "posttest": "npm run lint && nsp check"
   },
