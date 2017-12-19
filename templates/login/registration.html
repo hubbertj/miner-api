@@ -1,0 +1,67 @@
+<section class="counter-registration">
+    <div class="col-xs-12">
+        <button type="button" class="btn close quinary" ng-click="onClose()">&times;</button>
+        <h3 class="text-center">Registration</h3>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12">
+        <form ng-submit="onRegistration()" class="counter-form" data-toggle="validator" role="form" name="registrationForm" ng-init="aCtrl.initRegistration()">
+            <div class="form-group" show-errors>
+                <input type="text" id="registation-first-name" class="form-control" placeholder="Frist Name *" ng-model="registrationModel.first_name" name="firstName" pattern="^[_A-z]{1,}$" required>
+                <div class="help-block" ng-if="registrationForm.firstName.$error.required">First name is required</div>
+                <div class="help-block" ng-if="registrationForm.firstName.$error && !registrationForm.firstName.$error.required">First name contains invalid characters</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="text" class="form-control" placeholder="Last Name *" name="lastName" pattern="^[_A-z]{1,}$" ng-model="registrationModel.last_name" required>
+                <div class="help-block" ng-if="registrationForm.lastName.$error.required">Last name is required</div>
+                <div class="help-block" ng-if="registrationForm.lastName.$error && !registrationForm.lastName.$error.required">Last name contains invalid characters</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="email" class="form-control" name="emailAddress" placeholder="Email *" ng-model="registrationModel.email_address" required>
+                <div class="help-block" ng-if="registrationForm.emailAddress.$error.required">Email address is required</div>
+                <div class="help-block" ng-if="registrationForm.emailAddress.$error && !registrationForm.emailAddress.$error.required">Email address is invalid</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="password" class="form-control" name="password" placeholder="Enter password *" ng-model="registrationModel.password" data-minlength="6" required>
+                <div class="help-block" ng-if="registrationForm.password.$error.required">Password is required</div>
+                <div class="help-block" ng-if="registrationForm.password.$error && !registrationForm.password.$error.required">Not long enough</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="password" class="form-control" name="passwordConfirm" placeholder="Enter password again *" data-minlength="6" ng-model="registrationModel.password_confirm" required>
+                <div class="help-block" ng-if="registrationForm.passwordConfirm.$error.required">Password Confirm is required</div>
+                <div class="help-block" ng-if="registrationForm.passwordConfirm.$error && !registrationForm.passwordConfirm.$error.required">Not long enough</div>
+            </div>
+            <div class="row">
+                <h3 class="col-xs-12">Tells us about your organization</h3>
+                <div class="col-xs-12">&nbsp;</div>
+                <div class="form-group col-sm-6 col-xs-12" show-errors>
+                    <input type="text" class="form-control" placeholder="Enter organization name *" ng-model="registrationModel.organization_name" ng-disabled="registrationModel.organization_hash" name="organizationName" pattern="^[a-zA-Z0-9_ ]*$">
+                    <div class="help-block" ng-if="registrationForm.organizationName.$error">Organization name contains invalid characters</div>
+                </div>
+                <div class="form-group col-sm-6 col-xs-12">
+                    <select class="form-control" ng-model="registrationModel.organization_type" ng-options="organization_type.id as organization_type.name for organization_type in organization_types" ng-disabled="registrationModel.organization_hash">
+                        <option value="" selected>Type *</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="text" class="form-control" placeholder="Describe the organization" ng-model="registrationModel.organization_description" ng-disabled="registrationModel.organization_hash" name="organizationDescription">
+            </div>
+            <div class="row">
+                <h3 class="col-xs-12">OR</h3>
+            </div>
+            <div class="col-xs-12">&nbsp;</div>
+            <div class="form-group" show-errors>
+                <input id="organization-hash" type="text" name="organizationHash" class="form-control" placeholder="Organization invite #" ng-model="registrationModel.organization_hash" ng-disabled="registrationModel.organization_name || registrationModel.organization_type || registrationModel.organization_description">
+                <small id="organization-hash-help" class="form-text text-muted">&nbsp;Note please check your organization email invitation.</small>
+            </div>
+            <div class="col-xs-12">&nbsp;</div>
+            <div class="form-group">
+                <div class="col-xs-3">&nbsp;</div>
+                <button class="btn col-xs-6 primary" ng-disabled="registrationForm.$invalid">Submit</button>
+                <div class="col-xs-3">&nbsp;</div>
+            </div>
+            <div class="col-xs-12">&nbsp;</div>
+        </form>
+    </div>
+</section>

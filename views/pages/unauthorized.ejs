@@ -1,0 +1,6 @@
+<section class="counter-dashboard" ng-controller="GeneralCtrl as gCtrl" ng-clock>
+	<div class="counter-page-header">
+	 	<h1 class="text-center">Sorry {{user_model.first_name}}, you are not authorized to view the {{ path }} page!</h1>
+	</div>
+</section>
+<%- contentFor('title') %>Unauthorized<%- contentFor('end') %>

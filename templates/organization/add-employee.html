@@ -1,0 +1,30 @@
+<section class="beta" ng-cloak>
+    <div class="col-xs-12">
+        <button type="button" class="btn close quinary" ng-click="onBack()">&times;</button>
+        <h3 class="text-center">Invite Employee</h3>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="row">
+        <div class="col-xs-12">A invitation code,link, and instructions will be send to the email you provide</div>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <form ng-submit="onEmployeeInvite()" class="counter-form" data-toggle="validator" role="form" name="employeeInviteForm" ng-init="oCtrl.initAddEmpoyee()">
+        <div class="form-group" show-errors>
+            <input type="email" class="form-control" name="emailAddress" placeholder="Enter email *" ng-model="employeeInviteModel.email_address" required>
+            <div class="help-block" ng-if="employeeInviteForm.emailAddress.$error.required">Email address is required</div>
+            <div class="help-block" ng-if="employeeInviteForm.emailAddress.$error && !employeeInviteForm.emailAddress.$error.required">Email address is invalid</div>
+        </div>
+        <label class="title col-xs-8">Setup as administrator?</label>
+        <div class="col-xs-4 text-right checkbox-container">
+            <toggle ng-model="employeeInviteModel.is_admin" name="is_admin" ng-change="changed()" data-style="ios" data-on="Yes" data-off="No"></toggle>
+        </div>
+        <small class="pull-right">If multiple administrator is set to 'no' this will override the current administrator account for your organization.</small>
+        <div class="col-xs-12">&nbsp;</div>
+        <div class="row">
+            <div class="col-xs-4 pull-right">
+                <button class="btn btn-block primary" ng-disabled="employeeInviteForm.$invalid">Invite</button>
+            </div>
+        </div>
+    </form>
+    <div class="col-xs-12">&nbsp;</div>
+</section>

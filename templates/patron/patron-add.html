@@ -1,0 +1,83 @@
+<section class="beta">
+    <div class="col-xs-12">
+        <button type="button" class="btn close quinary" ng-click="onRoute('patron')">&times;</button>
+        <h3 class="text-left-xs text-left-sm text-center">New Patron</h3>
+    </div>
+    <div class="col-xs-12">
+        <form ng-submit="onPatronRegistration()" class="counter-form" data-toggle="validator" role="form" name="addPatronForm" ng-init="pCtrl.initAddPatron()">
+            <div class="form-group" show-errors>
+                <input type="text" id="patron-first-name" name="firstName" class="form-control" pattern="^[_A-z]{1,}$" placeholder="Frist Name *" ng-model="patronModel.first_name" required>
+                <div class="help-block" ng-if="addPatronForm.firstName.$error.required">First name is required</div>
+                <div class="help-block" ng-if="addPatronForm.firstName.$error && !addPatronForm.firstName.$error.required">First name contains invalid characters</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="text" class="form-control" name="lastName" placeholder="Last Name *" pattern="^[_A-z]{1,}$" ng-model="patronModel.last_name" required>
+                <div class="help-block" ng-if="addPatronForm.lastName.$error.required">Last name is required</div>
+                <div class="help-block" ng-if="addPatronForm.lastName.$error && !addPatronForm.lastName.$error.required">Last name contains invalid characters</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="email" class="form-control" name="emailAddress" placeholder="Enter email *" ng-model="patronModel.email_address" required>
+                <div class="help-block" ng-if="addPatronForm.emailAddress.$error.required">Email address is required</div>
+                <div class="help-block" ng-if="addPatronForm.emailAddress.$error && !addPatronForm.emailAddress.$error.required">Email address is invalid</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="password" data-minlength="6" class="form-control" name="password" placeholder="Enter password *" ng-model="patronModel.password" required>
+                <div class="help-block" ng-if="addPatronForm.password.$error.required">Password is required</div>
+                <div class="help-block" ng-if="addPatronForm.password.$error && !addPatronForm.password.$error.required">Not long enough</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="password" data-minlength="6" class="form-control" name="passwordConfirm" placeholder="Enter password again *" ng-model="patronModel.password_confirm" required>
+                <div class="help-block" ng-if="addPatronForm.passwordConfirm.$error.required">Password confirm is required</div>
+                <div class="help-block" ng-if="addPatronForm.passwordConfirm.$error && !addPatronForm.passwordConfirm.$error.required">Not long enough</div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-md-6" show-errors>
+                    <div class="input-group counter-group">
+                        <div class="input-group-addon">Date of birth</div>
+                        <input type="date" class="form-control" max="{{minAge | date:'yyyy-MM-dd'}}" name="dateOfBirth" placeholder="date of birth" ng-model="patronModel.dob" required/>
+                    </div>
+                    <div class="help-block" ng-if="addPatronForm.dateOfBirth.$error.required">Date of birth is required</div>
+                </div>
+                <div class="form-group col-xs-12 col-md-6" show-errors>
+                    <div class="input-group counter-group">
+                        <div class="input-group-addon">Phone</div>
+                        <input type="number" class="form-control" ng-minlength="10" ng-maxlength="11" name="phone" placeholder="" ng-model="patronModel.phone" />
+                    </div>
+                    <div class="help-block" ng-show="((addPatronForm.phone.$error.minlength || addPatronForm.phone.$error.maxlength) && addPatronForm.phone.$dirty)">phone number should be '1231231234' or '18001231234' formate</div>
+                </div>
+            </div>
+            <fieldset class="counter-widget">
+                <legend>Address</legend>
+                <div class="col-xs-12">&nbsp;</div>
+                <button class="btn senary add" ng-click="pCtrl.onAddAddress()" ng-show="!(addressArr.length > 0)" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+                <ul ng-repeat="address in addressArr" class="address-list col-xs-12">
+                    <li class="address-list-item col-xs-12 text-size-small">
+                        <button type="button" class="btn close quinary" ng-click="pCtrl.removeAddress($index)">&times;</button>
+                        <div class="col-xs-8 col-sm-9 col-md-10 address-info row">
+                            <div class="col-xs-12"><span>{{address.street_number}}&nbsp;{{address.route}}</div>
+                            <div class="col-xs-12"><span>City:&nbsp;</span>{{address.locality}}</div>
+                            <div class="col-xs-12"><span>State:&nbsp;</span>{{address.administrative_area_level_1}}</div>
+                            <div class="col-xs-12"><span>Country:&nbsp;</span>{{address.country}}</div>
+                            <div class="col-xs-12"><span>Postal&nbsp;Code:&nbsp;</span>{{address.postal_code}}</div>
+                            <div class="col-xs-12">&nbsp;</div> 
+                        </div>
+                    </li>
+                </ul>
+                <div class="col-xs-12">&nbsp;</div>
+            </fieldset>
+            <div class="row">
+                <h3 class="col-xs-12">Organization</h3>
+            </div>
+            <div class="form-group" show-errors>
+                <input id="organization" type="text" class="form-control" name="organization" placeholder="Organization *" ng-model="patronModel.organization_name" required disabled>
+                <div class="help-block" ng-if="addPatronForm.organization.$error.required">Organization is required</div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">&nbsp;</div>
+                <button class="btn col-xs-6 primary" ng-disabled="addPatronForm.$invalid">Submit</button>
+                <div class="col-xs-3">&nbsp;</div>
+            </div>
+        </form>
+        <div class="col-xs-12">&nbsp;</div>
+    </div>
+</section>

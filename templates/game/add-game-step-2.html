@@ -1,0 +1,90 @@
+<section class="beta">
+    <div class="col-xs-12">
+        <button type="button" class="btn senary add" ng-click="onRoute('add-game-step-1', false)"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+        <h3 class="text-left-xs text-left-sm text-center">Game Configuration</h3>
+    </div>
+    <div class="col-xs-12">
+        <h3 class="">&nbsp;</h3>
+        <form ng-submit="onGameCreate(2)" class="counter-form" data-toggle="validator" role="form" name="gameCeateStepTwo" ng-init="gCtrl.initGameCeate()">
+            <div class="row">
+                <div class="form-group col-xs-12 counter-group" show-errors>
+                    <div class="input-group">
+                        <div class="input-group-addon">Salary Cap</div>
+                        <input type="number" class="form-control" min="0" ng-model="gameModel.salaryCap" name="salaryCap" required />
+                    </div>
+                    <small class="col-xs-12 text-right">0 = no salary cap</small>
+                    <div class="help-block" ng-if="gameCeateStepTwo.entryFee.$error && !gameCeateStepTwo.salaryCap.$error.required">Salary cap a is required, 0 = no cap, min amount is 0</div>
+                    <div class="help-block" ng-if="gameCeateStepTwo.salaryCap.$error.required">Salary cap a is required field.</div>
+                </div>
+                <div class="form-group col-xs-12 counter-group" show-errors>
+                    <div class="input-group">
+                        <div class="input-group-addon">Entry Fee</div>
+                        <input type="number" class="form-control" min="0" ng-model="gameModel.entryFee" name="entryFee" required/>
+                    </div>
+                    <div class="help-block" ng-if="gameCeateStepTwo.entryFee.$error && !gameCeateStepTwo.entryFee.$error.required">Entry fee min amount is 0</div>
+                    <div class="help-block" ng-if="gameCeateStepTwo.entryFee.$error.required">Entry fee is required field.</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group col-xs-12 col-md-6" show-errors>
+                            <div class="input-group counter-group">
+                                <div class="input-group-addon">Start</div>
+                                <input type="date" class="form-control" min="{{ currentDate | date:'yyyy-MM-dd'}}" name="start" ng-model="gameModel.start" required/>
+                            </div>
+                            <div class="help-block" ng-if="gameCeateStepTwo.start.$error.required">End date is required</div>
+                            <div class="help-block" ng-if="gameCeateStepTwo.start.$error && !gameCeateStepTwo.start.$error.required">Does not meet min date.</div>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6" show-errors>
+                            <div class="input-group counter-group">
+                                <div class="input-group-addon">End</div>
+                                <input type="date" class="form-control" min="{{ currentDate | date:'yyyy-MM-dd'}}" name="end" ng-model="gameModel.end" required/>
+                            </div>
+                            <div class="help-block" ng-if="gameCeateStepTwo.end.$error.required">Start date is required</div>
+                            <div class="help-block" ng-if="gameCeateStepTwo.end.$error && !gameCeateStepTwo.end.$error.required">Does not meet min date.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group col-xs-12 col-md-6" show-errors>
+                            <div class="input-group counter-group">
+                                <div class="input-group-addon">Min Players</div>
+                                <input type="number" class="form-control" min="0" name="minPlayers" ng-model="gameModel.minPlayers" />
+                            </div>
+                            <div class="help-block" ng-if="gameCeateStepTwo.minPlayers.$error && !gameCeateStepTwo.minPlayers.$error.required">Min Players must be > 0</div>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-6" show-errors>
+                            <div class="input-group counter-group">
+                                <div class="input-group-addon">Max Players</div>
+                                <input type="number" class="form-control" min="0" name="maxPlayers" ng-model="gameModel.maxPlayers" />
+                            </div>
+                            <div class="help-block" ng-if="gameCeateStepTwo.maxPlayers.$error && !gameCeateStepTwo.maxPlayers.$error.required">Max Players must be > 0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 counter-group" show-errors>
+                    <div class="input-group">
+                        <div class="input-group-addon">Holding %</div>
+                        <input type="number" class="form-control" ng-model="gameModel.holding" name="holding" required/>
+                    </div>
+                    <small class="col-xs-12 text-right">percentage of the pool the oganization keeps</small>
+                    <div class="help-block" ng-if="gameCeateStepTwo.holding.$error.required">A holding percentage is required</div>
+                </div>
+                <div class="form-group col-xs-12 counter-group" show-errors>
+                    <div class="input-group">
+                        <div class="input-group-addon"># of Winners</div>
+                        <input type="number" min="1" class="form-control" ng-model="gameModel.winners" name="winners" required/>
+                    </div>
+                    <small class="col-xs-12 text-right">1 = only 1st place wins etc.., default = 3</small>
+                    <div class="help-block" ng-if="gameCeateStepTwo.winners.$error && !gameCeateStepTwo.winners.$error.required">Contest must have 1 min winner</div>
+                    <div class="help-block" ng-if="gameCeateStepTwo.winners.$error.required">Number of winners is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-3">&nbsp;</div>
+                <button class="btn col-xs-6 secondary" ng-disabled="gameCeateStepTwo.$invalid">Continue</button>
+                <div class="col-xs-3">&nbsp;</div>
+            </div>
+        </form>
+    </div>
+</section>

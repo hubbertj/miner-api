@@ -1,0 +1,8 @@
+{
+  "name": "CounterDraft-App",
+  "description": "CounterDraft App",
+  "repository": "https://github.com/CounterDraft/CounterDraft-App",
+  "logo": "",
+  "keywords": ["node", "express", "static"],
+  "image": "heroku/nodejs"
+}

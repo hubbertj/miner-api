@@ -1,0 +1,34 @@
+<script type="text/ng-template" id="add-address-modal.html" class="counter-modal">
+    <div id="add-address-modal" class="counter-modal" ng-init="mCtrl.initAddAddressModal()">
+        <div class="model-tmpl-0">
+            <form class="counter-form" id="add-address-form" data-toggle="validator" role="form" name="addAddressForm">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">Address</h4>
+                    <button type="button" class="btn close quinary" ng-click="mCtrl.cancel()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="hidden-xs col-sm-2"></div>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="form-group col-xs-12" show-errors ng-show="!noExtra">
+                            <select class="form-control" ng-model="addressModel.type" name="addressType" ng-options="address_type.id as address_type.name for address_type in address_types" required>
+                                <option value="" selected>Type *</option>
+                            </select>
+                            <div class="help-block" ng-if="addAddressForm.addressType.$error.required">Address type is required</div>
+                        </div>
+                        <div class="form-group col-xs-12" show-errors ng-show="!noExtra">
+                            <input type="text" id="registation-first-name" class="form-control" placeholder="Address Name" ng-model="addressModel.name" name="addressName" pattern="^[_A-z]{1,}$">
+                            <div class="help-block" ng-if="addAddressForm.addressName.$error">Address name contains invalid characters</div>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <input type="text" class="form-control" ng-places-autocomplete placeholder="address search" ng-model="autoAddress" pa-options="addressAutoOptions" pa-on-place-ready="mCtrl.onAddress" />
+                        </div>
+                    </div>
+                    <div class="hidden-xs col-sm-2"></div>
+                </div>
+                <div class="modal-footer">
+                <div class="col-xs-12">&nbsp;</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>

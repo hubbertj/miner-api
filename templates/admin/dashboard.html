@@ -1,0 +1,112 @@
+<section class="alpha">
+    <button class="btn senary add" ng-click="alCtrl.onCreateAdmin()" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+    <h3 class="text-center">Admin Page</h3>
+    <fieldset class="counter-widget">
+        <legend>Quick Data</legend>
+        <div class="col-xs-12">
+            <label>up since - </label>{{dashboardModal.uptime.calendar()}}</div>
+        <div class="col-xs-12">&nbsp;</div>
+        <div class="col-xs-12">
+            <label>Enviroment variables:</label>
+        </div>
+        <ul class="col-xs-12 settings-list">
+            <li ng-repeat="setting in dashboardModal.settings" class="col-xs-12">
+                <label>{{setting.label}}</label>&nbsp;:&nbsp;{{setting.value}}</li>
+        </ul>
+        <div class="col-xs-12">&nbsp;</div>
+    </fieldset>
+    <h3 class="text-left">System Settings</h3>
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" class="btn senary" ng-click="onStopEdit()"><i class="glyphicon glyphicon-pencil"></i></button>
+        </div>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <fieldset class="counter-widget">
+        <legend>Organization Types</legend>
+        <button class="btn senary add" ng-click="alCtrl.onAddOrganizationType()" type="button" ng-show="canEdit"><i class="glyphicon glyphicon-plus"></i></button>
+        <ul class="col-xs-12 organization-type-list">
+            <li ng-repeat="type in organization_types" class="row">
+                <button type="button" class="btn close quinary" ng-click="alCtrl.removeOrganizationType($index)" ng-show="canEdit">&times;</button>
+                <div class="form-group">
+                    <div class="col-xs-3 col-sm-2">
+                        <input class="form-control" type="text" value="{{ type.id }}" disabled/>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <input class="form-control" type="text" value="{{type.name}}" disabled/>
+                    </div>
+                    <div class="col-xs-5 col-sm-8 description-container">
+                        <textarea class="form-control" disabled>{{type.description}}</textarea>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <form ng-submit="onSubmitOrganizationType()" class="counter-form address-add-row" data-toggle="validator" role="form" name="addOrganizationTypeForm" ng-show="organizationAddShow">
+            <div class="form-group col-xs-4 col-sm-2" show-errors>
+                <input class="form-control" type="text" placeholder="name *" type="text" name="typeName" ng-model="organizationTypeModel.name" pattern="^[_A-z]{1,}$" required>
+                <small class="help-block" ng-if="addOrganizationTypeForm.typeName.$error.required">required!</small>
+                <small class="help-block" ng-if="addOrganizationTypeForm.typeName.$error && !addOrganizationTypeForm.typeName.$error.required">bad pattern!</small>
+            </div>
+            <div class="form-group col-xs-5 col-sm-8" show-errors>
+                <textarea class="form-control" type="text" placeholder="description *" name="description" ng-model="organizationTypeModel.description" required/>
+                <small class="help-block" ng-if="addOrganizationTypeForm.description.$error.required">required!</small>
+            </div>
+            <div class="col-xs-3 col-sm-2">
+                <button class="btn btn-block tertiary" ng-disabled="addOrganizationTypeForm.$invalid">Save</button>
+            </div>
+        </form>
+        <div class="col-xs-12">&nbsp;</div>
+    </fieldset>
+    <div class="col-xs-6 pull-right text-right"><small ng-show="canEdit">(organization type can only be delete if not used in the database!)</small></div>
+    <div class="col-xs-12">&nbsp;</div>
+    <fieldset class="counter-widget">
+        <legend>Address Types</legend>
+        <button class="btn senary add" ng-click="alCtrl.onAddAddressType()" type="button" ng-show="canEdit"><i class="glyphicon glyphicon-plus"></i></button>
+        <ul class="col-xs-12 address-type-list">
+            <li ng-repeat="type in address_types" class="row">
+                <button type="button" class="btn close quinary" ng-click="alCtrl.removeAddressType($index)" ng-show="canEdit">&times;</button>
+                <div class="form-group">
+                    <div class="col-xs-3 col-sm-2">
+                        <input class="form-control" type="text" value="{{ type.id }}" disabled/>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <input class="form-control" type="text" value="{{type.name}}" disabled/>
+                    </div>
+                    <div class="col-xs-5 col-sm-8 description-container">
+                        <textarea class="form-control" disabled>{{type.description}}</textarea>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <form ng-submit="onSubmitAddressType()" class="counter-form address-add-row" data-toggle="validator" role="form" name="addAddressTypeForm" ng-show="addressAddShow">
+            <div class="form-group col-xs-4 col-sm-2" show-errors>
+                <input class="form-control" type="text" placeholder="name *" type="text" name="typeName" ng-model="addressTypeModel.name" pattern="^[_A-z]{1,}$" required>
+                <small class="help-block" ng-if="addAddressTypeForm.typeName.$error.required">required!</small>
+                <small class="help-block" ng-if="addAddressTypeForm.typeName.$error && !addAddressTypeForm.typeName.$error.required">bad pattern!</small>
+            </div>
+            <div class="form-group col-xs-5 col-sm-8" show-errors>
+                <textarea class="form-control" type="text" placeholder="description *" name="description" ng-model="addressTypeModel.description" required/>
+                <small class="help-block" ng-if="addAddressTypeForm.description.$error.required">required!</small>
+            </div>
+            <div class="col-xs-3 col-sm-2">
+                <button class="btn btn-block tertiary" ng-disabled="addAddressTypeForm.$invalid">Save</button>
+            </div>
+        </form>
+        <div class="col-xs-12">&nbsp;</div>
+    </fieldset>
+    <div class="col-xs-6 pull-right text-right"><small ng-show="canEdit">(address type can only be delete if not used in the database!)</small></div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="row button-container">
+        <div class="col-xs-12">
+            <div class="col-sm-3 col-xs-12 pull-right">
+                <button class="btn btn-block tertiary" ng-click="alCtrl.onChangePassword()" type="button">Change Password</button>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-sm-3 col-xs-12 pull-right">
+                <a class="btn btn-block primary" href="/logout" target="_self">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+</section>

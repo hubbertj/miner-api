@@ -1,0 +1,79 @@
+<script type="text/ng-template" id="game-summary-modal.html" class="counter-modal">
+    <div id="game-summary-modal" class="counter-modal" ng-init="mCtrl.initGameSummaryModal()">
+        <div class="model-tmpl-0">
+            <form ng-submit="mCtrl.onConfirm()" class="counter-form" data-toggle="validator" role="form" name="gameSummaryForm">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">Game Summary</h4>
+                    <button type="button" class="btn close quinary" ng-click="mCtrl.cancel()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xs-12 col-sm-6 text-center">
+                        <img ng-src="{{'/images/leagues/' + league.image}}" alt="sport" class="sport-img" />
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="col-sm-12 hidden-xs">&nbsp;</div>
+                            <fieldset class="col-xs-12 game-summary-container">
+                                <div class="col-xs-12">Estimated Pool&nbsp;
+                                    <span ng-if="gameModel.maxPlayers"><small>&#36;{{gameModel.entryFee * gameModel.maxPlayers}}</small></span>
+                                    <span ng-if="!gameModel.maxPlayers">Not Available</span>
+                                </div>
+                                <div class="col-xs-12">Game Revenue&nbsp;
+                                    <span ng-if="gameModel.maxPlayers"><small>&#36;{{(gameModel.entryFee * gameModel.maxPlayers) * gameModel.holding / 100}}</small></span>
+                                    <span ng-if="!gameModel.maxPlayers">Not Available</span>
+                                </div>
+                                <div class="col-xs-6">Start&nbsp;<small>{{gameModel.start | date:'short'}}</small></div>
+                                <div class="col-xs-6">End&nbsp;<small>{{gameModel.end | date:'short'}}</small></div>
+                            </fieldset>
+                            <div class="col-sm-12 hidden-xs">&nbsp;</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 hidden-sm hidden-md hidden-lg">&nbsp;</div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-6 text-right-not-xs">
+                                <label>Salary Cap:</label> {{gameModel.salaryCap}}</div>
+                            <div class="col-xs-12 col-sm-6">
+                                <label>Entry Fee:</label> &#36;{{gameModel.entryFee}}</div>
+                            <div class="col-xs-12 col-sm-6 text-right-not-xs">
+                                <label>Start:</label> {{gameModel.start | date:'medium'}}</div>
+                            <div class="col-xs-12 col-sm-6">
+                                <label>End:</label> {{gameModel.end | date:'medium'}}</div>
+                            <div class="col-xs-12 col-sm-6 text-right-not-xs">
+                                <label>Min Players:</label> {{gameModel.minPlayers}}</div>
+                            <div class="col-xs-12 col-sm-6">
+                                <label>Max Players:</label> {{gameModel.maxPlayers}}</div>
+                            <div class="col-xs-12 col-sm-6 text-right-not-xs">
+                                <label>Holding:</label> {{gameModel.holding}}%</div>
+                            <div class="col-xs-12 col-sm-6">
+                                <label># of Winners:</label> {{gameModel.winners}}</div>
+                        </div>
+                        <div class="col-sm-3 hidden-xs">&nbsp;</div>
+                        <div class="col-sm-9 col-xs-12">
+                            <h3>Player Payouts</h3>
+                            <small>Estamited of max player value</small>
+                        </div>
+                        <div ng-if="gameModel.maxPlayers">
+                            <div class="col-sm-3 hidden-xs">&nbsp;</div>
+                            <div class="col-sm-9 col-xs-12">
+                                <div class="col-xs-12" ng-repeat="payout in payouts track by $index">
+                                    <span>{{ payout.place | place }} </span> &#36;{{ ((gameModel.entryFee * gameModel.maxPlayers) * payout.percentage / 100) }}
+                                </div>
+                            </div>
+                        </div>
+                        <span ng-if="!gameModel.maxPlayers">Not Available</span>
+                    </div>
+                    <div class="col-xs-12">&nbsp;</div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-3">&nbsp;</div>
+                        <div class="col-xs-6">
+                            <button class="btn btn-block primary" type="submit">Create</button>
+                        </div>
+                        <div class="col-xs-3">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="modal-footer">&nbsp;</div>
+            </form>
+        </div>
+    </div>
+</script>

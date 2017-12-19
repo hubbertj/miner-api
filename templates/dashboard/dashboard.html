@@ -1,0 +1,38 @@
+<section class="alpha" ng-init="dCtrl.initDash()" ng-clock>
+    <div class="row">
+        <div class="col-xs-12 dashboard-header">
+            <h3 class="text-center">Welcome&nbsp;Back,&nbsp;{{user_model.first_name}}</h3>
+        </div>
+    </div>
+    <fieldset class="counter-widget col-xs-12 col-sm-8">
+        <legend>Summary</legend>
+        <div class="col-xs-6 label-font">Current Total Patrons</div>
+        <div class="col-xs-6 text-right">{{total_patrons | number : fractionSize}}</div>
+        <div class="col-xs-6 label-font">Current Active Games</div>
+        <div class="col-xs-6 text-right">{{active_games | number : fractionSize}}</div>
+        <div class="col-xs-6 label-font">Overall Revenue</div>
+        <div class="col-xs-6 text-right">{{total_revenue | number : currency:"USD$"}}</div>
+        <div class="col-xs-12">&nbsp;</div>
+    </fieldset>
+    <div class="col-sm-2 hidden-xs">&nbsp;</div>
+    <div class="col-sm-2 hidden-xs">&nbsp;</div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="row">
+        <div class="form-group col-sm-10 col-xs-12 counter-group">
+            <div class="input-group">
+                <div class="input-group-addon">Time</div>
+                <select class="form-control" id="time-select" ng-model="timeSelect" ng-change="dCtrl.onTimeChange(timeSelect)" ng-options="x for x in timeSpan"></select>
+            </div>
+            <i class="glyphicon glyphicon-triangle-bottom"></i>
+        </div>
+    </div>
+    <div class="col-xs-12" id="chat-container">
+        <div class="col-xs-12">&nbsp;</div>
+        <div class="col-xs-12 dashboard-line-chart" line-chart line-data="chartData" line-resize='true' line-xkey='time' line-ykeys='["patrons", "games"]' line-labels='["Patrons", "Games"]' line-colors='["#1FBAA5", "#CC0000"]'>
+        </div>
+        <div class="col-xs-12">&nbsp;</div>
+    </div>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+</section>
+

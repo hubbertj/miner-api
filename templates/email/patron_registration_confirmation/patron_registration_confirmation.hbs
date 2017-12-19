@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+div.inner-container {
+    width: 75%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+}
+
+div.header {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #A13646;
+    padding-top: 15px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    height: 40px;
+    color: white;
+}
+
+div.container {
+    background-color: #f7fbfc;
+    color: #999;
+    border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    padding: 10px;
+}
+
+h4 {
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    margin: 0;
+    -webkit-text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    -moz-text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+    -webkit-appearance: button;
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: rgb(192, 192, 192);
+    color: black;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: lowercase;
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.button-container {
+    text-align: right
+}
+</style>
+
+<body>
+    <div class="inner-container">
+        <div class="header">
+            <h4 class="title">Registration Completed!</h4>
+        </div>
+        <div class="container">
+            <div class="col-xs-12">Dear {{user.first_name}}:</div>
+            <div class="col-xs-12">
+                <p>Thank you for signing up for CounterDraft.com. {{user.email_address}} has been added the {{organization.name}} organization. You can now login at 
+                <a href="{{url}}">{{url}}</a> with your email and password. If the organization failed to disclose your password and can simpley reset it on the login page of our website. Once again thank you for joining and we at CounterDraft hope you enjoy playing fantasy sports on your system.</p>
+            </div>
+            <div class="col-xs-12">Make sure to try out our iOS app which can be located on the apple store and our android app which can be located on the Google play store. Your email and password will log you in there as well.</div>
+            <div class="col-xs-12">&nbsp;</div>
+        </div>
+    </div>
+</body>
+
+</html>

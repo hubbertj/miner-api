@@ -1,0 +1,37 @@
+<section class="alpha">
+    <div class="title-header">
+        <button class="btn senary add" ng-click="onRoute('patron-add')"><i class="glyphicon glyphicon-plus"></i></button>
+        <h3 class="text-left-xs text-left-sm text-center">Patron Management</h3>
+    </div>
+    <form name="patronSearchForm" data-toggle="validator" class="counter-form" role="form" ng-submit="onPatronSearch()" ng-init="pCtrl.initSearch()">
+        <fieldset class="col-xs-12 counter-widget">
+            <legend>Patron Search</legend>
+            <div class="col-xs-12">&nbsp;</div>
+            <div class="col-xs-12">
+                <div class="form-group" show-errors>
+                    <input type="text" placeholder="patron id" ng-model="patronSearchModel.patron_id" name="patron_id" class="form-control" ng-disabled="patronSearchModel.first_name || patronSearchModel.last_name || patronSearchModel.email_address"/>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">&nbsp;Or</div>
+                <div class="form-group" show-errors>
+                    <input type="text" placeholder="first name" ng-model="patronSearchModel.first_name" name="first_name" class="form-control" ng-disabled="patronSearchModel.patron_id"/>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group" show-errors>
+                    <input type="text" placeholder="last name" name="last_name" ng-model="patronSearchModel.last_name" class="form-control" ng-disabled="patronSearchModel.patron_id"/>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group" show-errors>
+                    <input type="email" placeholder="email" name="email_address" ng-model="patronSearchModel.email_address" class="form-control" ng-disabled="patronSearchModel.patron_id"/>
+                    <div class="help-block" ng-if="patronSearchForm.email_address.$error">Email address is invalid</div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6 pull-right">
+                        <button class="btn primary btn-block" ng-disabled="patronSearchForm.$invalid || patronSearchFormValue()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div class="col-xs-12">&nbsp;</div>
+</section>

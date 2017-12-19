@@ -1,0 +1,57 @@
+<section class="beta" ng-init="oCtrl.initEmployeePage()" ng-clock>
+    <div class="col-xs-12">
+        <button type="button" class="btn close quinary" ng-click="onBack()">&times;</button>
+        <h3 class="text-center">Edit Employee</h3>
+    </div>
+    <ul class="employee-list col-xs-12">
+        <li class="employee-list-item col-xs-12 text-size-small">
+            <div class="col-xs-4 col-sm-3 col-md-2 patron-img">
+                <img ng-src="{{getEmployeeImage(employeeModel.uuid)}}" alt="employee_image" />
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-10 employee-info row">
+                <div class="col-xs-12"><span>id:&nbsp;</span>{{employeeModel.id}}</div>
+                <div class="col-xs-12"><span>First Name:&nbsp;</span>{{employeeModel.first_name}}</div>
+                <div class="col-xs-12"><span>Last Name:&nbsp;</span>{{employeeModel.last_name}}</div>
+                <div class="col-xs-12"><span>Email:&nbsp;</span>{{employeeModel.email_address}}</div>
+            </div>
+        </li>
+    </ul>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12">
+        <button type="button" class="btn senary" ng-click="oCtrl.onEnableEditEmployee()"><i class="glyphicon glyphicon-pencil"></i></button>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12">
+        <span ng-if="employeeEditForm.$dirty && employeeEditForm.$valid" class="help-block">Save...</span>
+        <form class="counter-form" data-toggle="validator" role="form" name="employeeEditForm" auto-save-form="oCtrl.saveEmployee()">
+            <div class="form-group" show-errors>
+                <input type="text" id="registation-first-name" class="form-control" placeholder="Frist Name *" ng-model="employeeModel.first_name" name="firstName" pattern="^[_A-z]{1,}$" ng-disabled="lockEmployeeForm" required>
+                <div class="help-block" ng-if="employeeEditForm.firstName.$error.required">First name is required</div>
+                <div class="help-block" ng-if="employeeEditForm.firstName.$error && !employeeEditForm.firstName.$error.required">First name contains invalid characters</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="text" class="form-control" placeholder="Last Name *" name="lastName" pattern="^[_A-z]{1,}$" ng-model="employeeModel.last_name" ng-disabled="lockEmployeeForm" required>
+                <div class="help-block" ng-if="employeeEditForm.lastName.$error.required">Last name is required</div>
+                <div class="help-block" ng-if="employeeEditForm.lastName.$error && !employeeEditForm.lastName.$error.required">Last name contains invalid characters</div>
+            </div>
+            <div class="form-group" show-errors>
+                <input type="email" class="form-control" name="emailAddress" placeholder="Email *" ng-model="employeeModel.email_address" ng-disabled="lockEmployeeForm" required>
+                <div class="help-block" ng-if="employeeEditForm.emailAddress.$error.required">Email address is required</div>
+                <div class="help-block" ng-if="employeeEditForm.emailAddress.$error && !employeeEditForm.emailAddress.$error.required">Email address is invalid</div>
+            </div>
+            <div class="input-group">
+                <a class="input-group-addon btn secondary" ng-click="oCtrl.onResetPassword()" ng-disabled="lockEmployeeForm">Reset Password</a>
+                <input type="password" class="form-control" name="password" placeholder="password *" ng-model="employeeModel.password" disabled />
+            </div>
+            <div class="col-xs-12">&nbsp;</div>
+            <div class="form-group">
+                <label class="title col-xs-8">Administrators?</label>
+                <div class="col-xs-4 text-right checkbox-container">
+                    <toggle ng-show="!lockEmployeeForm" ng-model="employeeModel.is_admin" name="admin" ng-change="changed()" data-style="ios" data-on="Yes" data-off="No"></toggle>
+                    <span ng-show="lockEmployeeForm" class="nonEdit">{{ employeeModel.is_admin | yesNo }}</span>
+                </div>
+            </div>
+            <div class="col-xs-12">&nbsp;</div>
+        </form>
+    </div>
+</section>

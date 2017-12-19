@@ -1,0 +1,7 @@
+<%if (environment === 'production') { %>
+    <link rel="stylesheet" href="/build/css/min/<%= npm_package_name %>.min.css"/>
+<% } else { %>
+	<link rel="stylesheet" href="/css/counter-main.css"/>
+<% } %>
+
+

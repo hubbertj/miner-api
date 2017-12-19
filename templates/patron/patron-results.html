@@ -1,0 +1,24 @@
+<section class="beta" ng-init="pCtrl.initResults()">
+    <div class="col-xs-12">
+        <button type="button" class="btn close quinary results-close" ng-click="onRoute('patron')">&times;</button>
+        <h3 class="col-xs-12">&nbsp;</h3>
+    </div>
+    <fieldset class="col-xs-12 counter-widget">
+        <legend>Patron Results</legend>
+        <ul ng-repeat="patron in searchArr" class="patron-list col-xs-12">
+            <li class="patron-list-item col-xs-12 text-size-small" ng-click="pCtrl.onPatronSelected(patron)">
+                <div class="col-xs-4 col-sm-3 col-md-2 patron-img">
+                    <img ng-src="{{pCtrl.getProfileImageUrl(patron.uuid)}}" alt="Patron_Image"/>
+                </div>
+                <div class="col-xs-8 col-sm-9 col-md-10 patron-info row">
+                    <div class="col-xs-12"><span>id:</span>&nbsp;{{patron.id}}</div>
+                    <div class="col-xs-12"><span>First Name:</span>&nbsp;{{patron.first_name}}</div>
+                    <div class="col-xs-12"><span>Last Name:</span>&nbsp;{{patron.last_name}}</div>
+                    <div class="col-xs-12"><span>Email:</span>&nbsp;{{patron.email_address}}</div>
+                </div>
+            </li>
+        </ul>
+        <div class="col-xs-12"></div>
+    </fieldset>
+    <div class="col-xs-12">&nbsp;</div>
+</section>

@@ -1,0 +1,44 @@
+<article class="counter-admin" ng-controller="AdminCtrl as alCtrl">
+	<section class="counter-login">
+	    <div id="counter-login-modal" class="counter-modal" ng-init="alCtrl.initAdminLogin()">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="model-tmpl-0">
+	                    <form name="loginForm" class="form-horizontal counter-form" id="login-admin-form" ng-submit="onLogin()" data-toggle="validator" role="form">
+	                        <div class="modal-header">
+	                            <h4 class="modal-title text-center">Admin Login</h4>
+	                        </div>
+	                        <div class="modal-body">
+	                            <div class="form-group" show-errors>
+	                                <div class="col-xs-12">
+	                                    <input type="text" name="username" class="form-control" id="username" placeholder="Username *" ng-model="loginModel.username" required>
+	                                    <div class="help-block" ng-if="loginForm.username.$error.required">Username address is required</div>
+	                                </div>
+	                            </div>
+	                            <div class="form-group" show-errors>
+	                                <div class="col-xs-12">
+	                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password *" ng-model="loginModel.password" data-minlength="6" required>
+	                                    <div class="help-block" ng-if="loginForm.password.$error.required">Password is required</div>
+	                                    <div class="help-block" ng-if="loginForm.password.$error && !loginForm.password.$error.required">Not long enough</div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="modal-footer">
+	                            <div class="form-group">
+	                                <div class="col-xs-12 col-sm-4">
+	                                </div>
+	                                <div class="col-xs-12 col-sm-4">
+	                                    <button type="submit" class="btn primary btn-block" ng-disabled="loginForm.$invalid">Login</button>
+	                                </div>
+	                                <div class="col-xs-12 col-sm-4">
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+</article>
+<%- contentFor('title') %>Admin Login<%- contentFor('end') %>

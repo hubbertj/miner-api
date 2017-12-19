@@ -1,0 +1,71 @@
+<section class="counter-login">
+    <div id="counter-login-modal" class="login-modal counter-modal" ng-init="aCtrl.initLogin()">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="model-tmpl-0">
+                    <form name="loginForm" class="form-horizontal counter-form" id="login-form" ng-submit="onSubmit()" data-toggle="validator" role="form">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-center">login</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" show-errors>
+                                <div class="col-xs-12">
+                                    <input type="email" name="emailAddress" class="form-control" id="username" placeholder="Email *" ng-model="loginModel.email_address" required>
+                                    <div class="help-block" ng-if="loginForm.emailAddress.$error.required">Email address is required</div>
+                                    <div class="help-block" ng-if="loginForm.emailAddress.$error && !loginForm.emailAddress.$error.required">Email address is invalid</div>
+                                </div>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <div class="col-xs-12">
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password *" ng-model="loginModel.password" data-minlength="6" required>
+                                    <div class="help-block" ng-if="loginForm.password.$error.required">Password is required</div>
+                                    <div class="help-block" ng-if="loginForm.password.$error && !loginForm.password.$error.required">Not long enough</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <div class="col-xs-12 col-sm-4">
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <button type="submit" class="btn primary btn-block" ng-disabled="loginForm.$invalid">Login</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                </div>
+                                <div class="col-xs-12 text-center">
+                                    <a class="link-text" ng-click="onRoute('registration')">
+                                        <u>create a account</u></a><span>&nbsp;or&nbsp;</span><a class="link-text active-reset" ng-click="onShowReset()"><u>forgot username/password</u></a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div ng-class="showResetPassword ? 'active' : ''" class="retrieve-container">
+                        <form name="resetPasswordForm" class="form-horizontal counter-form" id="retrieve-form" ng-submit="onReset()" data-toggle="validator" role="form">
+                            <div class="modal-header">
+                                <h4 class="modal-title text-center">Reset Your Password</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group" show-errors>
+                                    <div class="col-sm-12">
+                                        <input type="email" class="form-control" name="emailAddress" id="reset-email" placeholder="Email *" ng-model="resetModal.email_address" ng-model="resetModal.email_address" required>
+                                        <div class="help-block" ng-if="resetPasswordForm.emailAddress.$error.required">Email address is required</div>
+                                        <div class="help-block" ng-if="resetPasswordForm.emailAddress.$error && !resetPasswordForm.emailAddress.$error.required">Email address is invalid</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-sm-4">&nbsp;</div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <button type="submit" class="btn primary btn-block" ng-disabled="resetPasswordForm.$invalid">Reset</button>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">&nbsp;</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

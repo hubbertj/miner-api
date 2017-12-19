@@ -1,0 +1,29 @@
+<section class="beta">
+    <div class="col-xs-12">
+        <button type="button" class="btn senary add" ng-click="onRoute('add-game-step-1', false)"><i class="glyphicon glyphicon-circle-arrow-left"></i></button>
+        <h3 class="text-left-xs text-left-sm text-center">Winners Payout</h3>
+    </div>
+    <form ng-submit="onGameCreate(3, gameCeateStepThree)" class="counter-form" data-toggle="validator" role="form" name="gameCeateStepThree" ng-init="gCtrl.initGameCeate()">
+        <div class="row">
+            <div class="col-xs-12">
+                <ng-form name="userFieldForm" ng-repeat="payout in payouts track by $index">
+                    <div class="form-group counter-group" show-errors>
+                        <div class="input-group">
+                            <div class="input-group-addon">{{payout.place | place }}</div>
+                            <input type="number" class="form-control" name="percentage" ng-model="payout.percentage" min="0" required/>
+                            <div class="input-group-addon">&#37;</div>
+                        </div>
+                        <div class="help-block" ng-if="userFieldForm.percentage.$error.required">Salary cap a is required field.</div>
+                    </div>
+                </ng-form>
+                <small class="pull-right">All precentages combine must equal 100%</small>
+                <div class="col-xs-12">&nbsp;</div>
+                <div class="form-group">
+                    <div class="col-xs-3">&nbsp;</div>
+                    <button class="btn col-xs-6 secondary" ng-disabled="gameCeateStepTwo.$invalid">Continue</button>
+                    <div class="col-xs-3">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

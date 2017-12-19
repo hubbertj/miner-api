@@ -1,0 +1,39 @@
+<section class="alpha">
+    <div id="counter-retrieve-modal" class="counter-modal" ng-init="rCtrl.initPasswordRecovery()">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="model-tmpl-0">
+                    <form name="recoverPasswordForm" class="form-horizontal counter-form" ng-submit="onSubmit()" data-toggle="validator" role="form">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-center">Recover Password</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" show-errors>
+                                <div class="col-xs-12">
+                                    <input type="password" class="form-control" name="new_password" placeholder="Enter password *" ng-model="recoverModel.new_password" data-minlength="6" required>
+                                    <div class="help-block" ng-if="recoverPasswordForm.new_password.$error.required">Password is required</div>
+                                    <div class="help-block" ng-if="recoverPasswordForm.new_password.$error && !recoverPasswordForm.new_password.$error.required">Not long enough</div>
+                                </div>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <div class="col-xs-12">
+                                    <input type="password" class="form-control" name="passwordConfirm" placeholder="Enter password again *" data-minlength="6" ng-model="recoverModel.password_confirm" required>
+                                    <div class="help-block" ng-if="recoverPasswordForm.passwordConfirm.$error.required">Password Confirm is required</div>
+                                    <div class="help-block" ng-if="recoverPasswordForm.passwordConfirm.$error && !recoverPasswordForm.passwordConfirm.$error.required">Not long enough</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12 col-sm-4">&nbsp;</div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <button type="submit" class="btn primary btn-block" ng-disabled="recoverPasswordForm.$invalid || formEnabled">Reset</button>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">&nbsp;</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+</section>

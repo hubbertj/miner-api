@@ -5,15 +5,35 @@ const systeminformation = require('systeminformation');
 
 module.exports = function(app) {
 
+//   app.get('*', async (req, res, next) => {
+//   try {
+
+//     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
+//     res.status(route.status || 200);
+//     res.send(`<!doctype html>${html}`);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+
   /**
    * Used for getting the server health;
    * @param  {[type]} app [description]
    * @return {[type]}     [description]
    */
-  app.get('/*', function(req, res) {
+  app.get('/*', function(req, res, next) {
     var pathArr = req.params[0].split('/');
-    // req.next();
+    // req.params[0] = '';
+    // req.url = "/";
+    // req.originalUrl = "/";
+
+    console.log(req.params);
+    console.log(req.url);
+    console.log(req.originalUrl);
+ 
     req.next();
+    // next();
     // res.end();
     // if(pathArr.length > 0 && pathArr[0] === 'api'){
     //   req.next();

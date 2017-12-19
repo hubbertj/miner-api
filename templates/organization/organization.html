@@ -1,0 +1,122 @@
+<section class="alpha" ng-init="oCtrl.initOrganization()" ng-cloak>
+    <div class="title-header">
+        <h3 class="text-center">{{organizationModel.name}}</h3>
+    </div>
+    <div class="col-xs-12">
+        <button type="button" class="btn senary" ng-click="oCtrl.onEdit()" ng-show="showEdit"><i class="glyphicon glyphicon-pencil"></i></button>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <span>Organization ID - {{organizationModel.id}}</span>
+            </div>
+        </div>
+        <div class="col-xs-12">&nbsp;</div>
+        <span ng-if="employeeEditForm.$dirty && employeeEditForm.$valid" class="help-block">Save...</span>
+        <form class="counter-form" data-toggle="validator" role="form" name="employeeEditForm" auto-save-form="oCtrl.saveForm()">
+            <div class="row">
+                <div class="form-group col-sm-6 col-xs-12" show-errors>
+                    <input type="text" class="form-control" ng-disabled="editLocked" placeholder="Enter organization name *" ng-model="organizationModel.name" name="organizationName" pattern="^[a-zA-Z0-9_ ]*$">
+                    <div class="help-block" ng-if="employeeEditForm.organizationName.$error">Organization name contains invalid characters</div>
+                </div>
+                <div class="form-group col-sm-6 col-xs-12">
+                    <select class="form-control" ng-disabled="editLocked" ng-model="organizationModel.type" ng-options="organization_type.id as organization_type.name for organization_type in organization_types">
+                    </select>
+                </div>
+                <div class="form-group col-xs-12" show-errors>
+                    <textarea class="form-control" ng-disabled="editLocked" placeholder="Describe the organization" ng-model="organizationModel.description" name="organizationDescription"></textarea>
+                </div>
+                <div class="form-group col-xs-12 col-md-6 pull-right" show-errors>
+                    <div class="input-group counter-group">
+                        <div class="input-group-addon">Phone</div>
+                        <input type="number" class="form-control" ng-minlength="10" ng-maxlength="11" name="phone" ng-disabled="editLocked" ng-model="organizationModel.phone" />
+                    </div>
+                    <div class="help-block" ng-show="((employeeEditForm.phone.$error.minlength || employeeEditForm.phone.$error.maxlength) && employeeEditForm.phone.$dirty)">phone number should be '1231231234' or '18001231234' formate</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label class="title col-xs-8">Password reset expiration time</label>
+                    <div class="col-xs-4 input-group counter-group">
+                        <div class="input-group-addon">Time</div>
+                        <input type="number" ng-disabled="editLocked" ng-change="oCtrl.onSettingChange('password_expire_time', '{{organizationModel.password_expire_time}}')" ng-model="organizationModel.password_expire_time" name="password_expire_time" class="form-control text-right" />
+                    </div>
+                    <div class="col-xs-12">&nbsp;</div>
+                    <label class="title col-xs-8">Send patron registration email?</label>
+                    <div class="col-xs-4 text-right checkbox-container">
+                        <toggle ng-show="!editLocked" ng-model="organizationModel.patron_registration_email" name="patron_registration_email" ng-change="oCtrl.onSettingChange('patron_registration_email', '{{organizationModel.patron_registration_email}}')" data-style="ios" data-on="Yes" data-off="No"></toggle>
+                        <span ng-show="editLocked" class="nonEdit">{{ organizationModel.patron_registration_email | yesNo }}</span>
+                    </div>
+                    <div class="col-xs-12">&nbsp;</div>
+                    <label class="title col-xs-8">Allow multiple administrators?</label>
+                    <div class="col-xs-4 text-right checkbox-container">
+                        <toggle ng-show="!editLocked" ng-model="organizationModel.multi_admin" name="multi_admin" ng-change="oCtrl.onSettingChange('multi_admin', '{{organizationModel.multi_admin}}')" data-style="ios" data-on="Yes" data-off="No"></toggle>
+                        <span ng-show="editLocked" class="nonEdit">{{ organizationModel.multi_admin | yesNo }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">&nbsp;</div>
+        </form>
+    </div>
+    <div class="col-xs-12" ng-cloak>
+        <fieldset class="counter-widget">
+            <legend>Addresses</legend>
+            <button class="btn senary add" ng-click="oCtrl.onAddAddress()" ng-show="!editLocked" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+            <ul class="address-list col-xs-12">
+                <li class="address-list-item col-xs-12 text-size-small" ng-repeat="address in addressArr">
+                    <button type="button" class="btn close quinary" ng-show="!editLocked" ng-click="oCtrl.removeAddress($index)">&times;</button>
+                    <div class="col-xs-8 col-sm-9 col-md-10 address-info row">
+                        <div class="col-xs-12"><span>{{address.name}}</span></div>
+                        <div class="col-xs-12"><span>{{address.street_number}}&nbsp;{{address.route}}</span></div>
+                        <div class="col-xs-12"><span>City:&nbsp;</span>{{address.locality}}</div>
+                        <div class="col-xs-12"><span>State:&nbsp;</span>{{address.administrative_area_level_1}}</div>
+                        <div class="col-xs-12"><span>Country:&nbsp;</span>{{address.country}}</div>
+                        <div class="col-xs-12"><span>Postal&nbsp;Code:&nbsp;</span>{{address.postal_code}}</div>
+                        <div class="col-xs-12"><span>Type:</span>&nbsp;{{ (address_types | filter:{id:address.type})[0].name }}</div>
+                        <div class="col-xs-12">&nbsp;</div>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12" ng-cloak>
+        <fieldset class="counter-widget employee-widget">
+            <legend>Employees</legend>
+            <button class="btn senary add" ng-click="oCtrl.onAddEmployee()" ng-show="!editLocked" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+            <ul class="employee-list col-xs-12">
+                <li class="employee-list-item col-xs-12 text-size-small" ng-repeat="employee in employees | orderBy : ['-is_admin','id']" ng-click="oCtrl.onEditEmployee(employee)">
+                    <i ng-if="employee.is_admin" class="glyphicon glyphicon-star admin-icon"></i>
+                    <div class="col-xs-8 col-sm-9 col-md-10 employee-info row">
+                        <div class="col-xs-12"><span>{{employee.first_name}}&nbsp;{{employee.last_name}}</div>
+                        <div class="col-xs-12"><span>ID:&nbsp;</span>{{employee.id}}</div>
+                        <div class="col-xs-12"><span>Email:&nbsp;</span>{{employee.email_address}}</div>
+                        <div class="col-xs-12">&nbsp;</div>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+        <div class="col-xs-6"><small ng-show="!editLocked" class="pull-left">(click to edit employee)</small></div>
+        <div class="col-xs-6 text-right"><small><i class="glyphicon glyphicon-star"></i>&nbsp;Organization Administrator</small></div>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+    <div class="col-xs-12" ng-cloak>
+        <fieldset class="counter-widget patron-widget">
+            <legend>Patrons</legend>
+            <button class="btn senary add" ng-click="oCtrl.onAddPatron()" ng-show="!editLocked" type="button"><i class="glyphicon glyphicon-plus"></i></button>
+            <ul class="patron-list col-xs-12">
+                <li class="patron-list-item col-xs-12 text-size-small" ng-repeat="patron in patrons | orderBy :['id']" ng-click="oCtrl.onEditPatron(patron)">
+                    <div class="col-xs-8 col-sm-9 col-md-10 patron-info row">
+                        <div class="col-xs-12"><span>{{patron.last_name}},&nbsp;{{patron.first_name}}</div>
+                        <div class="col-xs-12"><span>ID:&nbsp;</span>{{patron.id}}</div>
+                        <div class="col-xs-12"><span>Email:&nbsp;</span>{{patron.email_address}}</div>
+                        <div class="col-xs-12">&nbsp;</div>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+        <div class="col-xs-12"><small ng-show="!editLocked">(click to edit patron)</small></div>
+    </div>
+    <div class="col-xs-12">&nbsp;</div>
+</section>
